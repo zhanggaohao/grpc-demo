@@ -1,0 +1,21 @@
+syntax = "proto3";
+package service.echo;
+
+option java_package = "io.grpc.gen.v1.service";
+option java_outer_classname = "Echo";
+option java_multiple_files = true;
+option java_generic_services = true;
+
+message EchoRequest {
+  uint32 requestId = 1;
+  string message = 2;
+}
+
+message EchoResponse {
+  uint32 requestId = 1;
+  string message = 3;
+}
+
+service EchoService {
+  rpc echo (EchoRequest) returns (EchoResponse);
+}

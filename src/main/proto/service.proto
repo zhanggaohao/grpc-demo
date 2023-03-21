@@ -1,0 +1,29 @@
+syntax = "proto3";
+package service.v1;
+
+option java_package = "io.grpc.gen.v1.service";
+option java_outer_classname = "Service";
+option java_multiple_files = true;
+
+message ServiceRequestMetadata {
+  string className = 1;
+  string methodName = 2;
+  repeated string parameterTypes = 3;
+}
+
+message ServiceRequest {
+  ServiceRequestMetadata metadata = 1;
+  repeated bytes requestBody = 2;
+}
+
+message ServiceResponse {
+  bytes returnBody = 1;
+}
+
+service RpcService {
+  rpc request (ServiceRequest) returns (ServiceResponse);
+}
+
+//service RpcService1 {
+//  rpc request (stream ServiceRequest) returns (stream ServiceResponse);
+//}
